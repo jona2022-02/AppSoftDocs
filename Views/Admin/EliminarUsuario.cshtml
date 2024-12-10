@@ -1,0 +1,21 @@
+﻿
+
+@{
+    ViewData["Title"] = "Eliminar Usuario";
+    Layout = "~/Views/Admin/Index.cshtml";
+}
+
+<h1>EliminarUsuario</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>MantenedorUsuario</h4>
+    <hr />
+    <dl class="row">
+    </dl>
+    
+    <form asp-action="EliminarUsuario">
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

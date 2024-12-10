@@ -1,0 +1,133 @@
+﻿@model IEnumerable<AppSoftDoc.Models.Usuario>
+
+@{
+    ViewData["Title"] = "Listado de Usuarios";
+    Layout = "~/Views/Shared/_LayoutAdministrador.cshtml";
+}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewData["Title"]</title>
+    <link href="~/css/menuadministrador.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet" />
+    <script src="~/js/confirmareliminacion.js"></script> <!-- Asegúrate de que este archivo JS esté bien implementado -->
+
+    <style>
+        /* Contenedor para el contenido principal, que tendrá scroll */
+        .content-wrapper {
+            padding-top: 60px; /* Ajuste para no tapar el título con la barra de navegación */
+            overflow-y: auto;
+            height: calc(100vh - 60px); /* Restamos la altura de la barra de navegación */
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Configurar el título */
+        h2 {
+            color: white;
+        }
+
+        /* Tabla con scroll */
+        .table-container {
+            flex-grow: 1; /* Asegura que la tabla ocupe todo el espacio restante */
+            overflow-y: auto;
+            margin-top: 20px;
+            max-height: calc(100vh - 120px); /* Altura máxima de la tabla con scroll (ajustada por la barra de navegación y el título) */
+        }
+
+        /* Estilo para la tabla */
+        .table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        /* Estilo para las barras de desplazamiento con transparencia y bordes visibles */
+        .table-container::-webkit-scrollbar {
+            width: 10px; /* Ancho de la barra de desplazamiento */
+        }
+
+        .table-container::-webkit-scrollbar-thumb {
+            background-color: rgba(0, 0, 0, 0.2); /* Fondo de la barra con transparencia */
+            border-radius: 10px; /* Bordes redondeados */
+            border: 2px solid rgba(0, 0, 0, 0.5); /* Borde visible en la barra */
+        }
+
+        .table-container::-webkit-scrollbar-track {
+            background-color: rgba(0, 0, 0, 0); /* Fondo transparente para el track */
+            border-radius: 10px;
+        }
+
+        /* Para Firefox */
+        .table-container {
+            scrollbar-width: thin; /* Delgado */
+            scrollbar-color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0); /* Color de la barra con borde visible */
+        }
+    </style>
+</head>
+
+<body class="cuerpo">
+    <div class="content-wrapper">
+        <form>
+            <h2>Listado de Usuarios</h2>
+
+            <!-- Tabla con la lista de usuarios -->
+            <div class="table-container">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Id Usuario</th>
+                            <th>Nombre Usuario</th>
+                            <th>Clave</th>
+                            <th>Correo</th>
+                            <th>Rol</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var usuario in Model)
+                        {
+                            <tr>
+                                <td>@usuario.IdUsuarios</td>
+                                <td>@usuario.NombreCompleto</td>
+                                <td>@string.Concat(Enumerable.Repeat("*", usuario.Clave.Length))</td> <!-- Mostrar clave como asteriscos -->
+                                <td>@usuario.Correo</td>
+                                <td>
+                                    @if (usuario.Role != null)
+                                    {
+                                        @usuario.Role.Descripcion
+                                    }
+                                    else
+                                    {
+                                        <span>No asignado</span>
+                                    }
+                                </td>
+                                <td>
+                                    <!-- Botón de editar -->
+                                    <a href="@Url.Action("EditarUsuario", "Admin", new { id = usuario.IdUsuarios })" class="btn btn-primary btn-sm">
+                                        <i class="bi bi-pencil"></i> Editar
+                                    </a>
+
+                                    <!-- Enlace a la acción de eliminar con confirmación -->
+                                    <a href="javascript:void(0);" class="btn btn-danger btn-sm" onclick="confirmarEliminacion(@usuario.IdUsuarios)">
+                                        <i class="bi bi-trash"></i> Eliminar
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Crear nuevo usuario -->
+            <a asp-action="CrearUsuario" class="btn btn-success"><i class="bi bi-plus-circle"></i> Crear Nuevo</a>
+        </form>
+    </div>
+
+    <!-- Referenciar el archivo JS para SweetAlert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+    <script src="~/js/confirmarEliminacion.js"></script> <!-- Asegúrate de que este archivo JS esté bien implementado -->
+</body>
+
+</html>

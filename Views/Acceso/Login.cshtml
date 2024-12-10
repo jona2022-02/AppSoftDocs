@@ -1,0 +1,89 @@
+﻿@model AppSoftDoc.ViewModels.LoginVM
+@{
+    // Título de la vista
+    ViewData["Title"] = "Login";
+    // Layout que se usará para la vista
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- Meta información básica del documento -->
+    <meta charset="UTF-8"> <!-- Define la codificación de caracteres -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Para diseño responsivo -->
+    <title>@ViewData["Title"] - Login</title> <!-- Título de la página, se usa la variable ViewData -->
+    <!-- Carga de las librerías CSS y JS necesarias -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> <!-- Bootstrap CSS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> <!-- Librería jQuery -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script> <!-- Bootstrap JS -->
+    <link href="~/css/styles.css" rel="stylesheet" /> <!-- Archivo de estilos adicional -->
+</head>
+
+<body>
+    <!-- Contenedor principal de la página -->
+    <div class="container">
+        <div class="d-flex justify-content-center h-100">
+            <!-- Tarjeta (card) que contiene el formulario de login -->
+            <div class="card">
+                <!-- Cabecera de la tarjeta -->
+                <div class="card-header">
+                    <h3>Bienvenido</h3> <!-- Título dentro de la tarjeta -->
+                </div>
+
+                <!-- Cuerpo de la tarjeta, contiene el formulario de login -->
+                <div class="card-body">
+                    <!-- Formulario para el inicio de sesión -->
+                    <form method="post">
+                        <!-- Campo para el correo electrónico -->
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span> <!-- Icono de usuario -->
+                            </div>
+                            <!-- Campo para ingresar el correo (EditorFor se usa para vincular el modelo) -->
+                            @Html.EditorFor(model => model.Correo, new { htmlAttributes = new { @class = "form-control", placeholder = "Correo electrónico" } })
+                        </div>
+
+                        <!-- Campo para la contraseña -->
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-key"></i></span> <!-- Icono de clave -->
+                            </div>
+                            <!-- Campo para ingresar la clave (EditorFor para el modelo) -->
+                            @Html.EditorFor(model => model.Clave, new { htmlAttributes = new { @class = "form-control", placeholder = "Clave", type = "password" } })
+                        </div>
+
+                        <!-- Botón para enviar el formulario -->
+                        <div class="form-group">
+                            <input type="submit" value="Iniciar " class="btn float-right login_btn" /> <!-- Botón de inicio de sesión -->
+                        </div>
+                    </form>
+                    <br />
+                </div>
+
+                <!-- Lógica para mostrar un mensaje de error utilizando SweetAlert -->
+                @if (ViewData["Mensaje"] != null)
+                {
+                    <script>
+                        Swal.fire({
+                            title: "Error", // Título del mensaje
+                            text: "@ViewData["Mensaje"]", // Mensaje que se muestra, extraído de ViewData
+                            icon: "error", // Tipo de mensaje (error)
+                            confirmButtonText: "Aceptar" // Texto del botón de confirmación
+                        });
+                    </script>
+                }
+
+                <!-- Pie de la tarjeta -->
+                <div class="card-footer">
+                    <div class="d-flex justify-content-center links">
+                        <!-- Enlace para redirigir al registro si no se tiene cuenta -->
+                        ¿No tienes una cuenta?
+                        <a href="@Url.Action("Registrarse", "Acceso")">Regístrate</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

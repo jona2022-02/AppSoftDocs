@@ -1,0 +1,57 @@
+﻿@model IEnumerable<AppSoftDoc.Models.Archivo>
+
+@{
+    ViewData["Title"] = "Documentación";
+    Layout = "~/Views/Shared/_LayoutAdministrador.cshtml";  // Usar el layout adecuado para el administrador
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewData["Title"]</title>
+    <link href="~/css/menuadministrador.css" rel="stylesheet" />
+</head>
+<body class="cuerpo">
+    <form>
+        <h2 class="text-white">Documentación</h2>
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Id Documento</th>
+                    <th>Nombre de Archivo</th>
+                    <th>Extensión</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    foreach (var archivo in Model)
+                    {
+                        <tr>
+                            <td>@archivo.IdArchivo</td>
+                            <td>@archivo.Nombre</td>
+                            <td>@archivo.Extension</td>
+                            <td>
+                             
+                                <!-- Botón para descargar el archivo -->
+                                <a asp-action="DescargarArchivo" asp-route-id="@archivo.IdArchivo" class="btn btn-success btn-sm">
+                                    <i class="bi bi-download"></i> Descargar
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="4" class="text-center">No se encontraron archivos.</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </form>
+</body>
+<script src="~/js/site.js" asp-append-version="true"></script>
+</html>

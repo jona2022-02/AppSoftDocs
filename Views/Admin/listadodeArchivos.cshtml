@@ -1,0 +1,71 @@
+﻿
+
+@{
+    ViewData["Title"] = "listadodeArchivos";
+    
+}
+<main>
+<h2>Listado de Archivos</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Extensión</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @* @foreach (var archivo in Model.Archivos)
+            {
+            <tr>
+                <td>@archivo.IdArchivo</td>
+                <td>@archivo.Nombre</td>
+                <td>@archivo.Extension</td>
+
+                <td>
+                    <a class="btn btn-primary" href="@Url.Page("/Programador/ListadeArchivosProgra", new { handler = "DownloadFile", id = archivo.IdArchivo })">Descargar</a>
+                    <a class="btn btn-secondary" href="@Url.Page("/Programador/ListadeArchivosProgra", new { handler = "ViewFile", id = archivo.IdArchivo })" target="_blank">Ver</a>
+
+                    <button class="btn btn-danger" onclick="deleteFile(@archivo.IdArchivo)">Eliminar</button>
+                </td>
+            </tr>
+            } *@
+    </tbody>
+</table>
+</main>
+
+@section Scripts {
+    <script>
+        function deleteFile(id) {
+            if (confirm('¿Estás seguro de que quieres eliminar este archivo?')) {
+                fetch(`/Programador/ListadeArchivosProgra?handler=DeleteFile&id=${id}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(response => {
+                    if (response.ok) {
+                        // Recarga la página si la eliminación es exitosa
+                        location.reload();
+                    } else {
+                        alert('Error al eliminar el archivo.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Error al eliminar el archivo.');
+                });
+            }
+        }
+    </script>
+
+    <a class="btn btn-success" href="@Url.Page("/Programador/SubirArchivo")">Subir Archivo</a> <!-- Botón para ver el listado de archivos -->
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+}

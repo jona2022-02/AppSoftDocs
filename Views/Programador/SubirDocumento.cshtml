@@ -1,0 +1,93 @@
+﻿@{
+    ViewData["Title"] = "Subir Documento";
+    Layout = "~/Views/Shared/_LayoutProgramador.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewData["Title"]</title>
+    <link href="~/css/menuadministrador.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet" />
+    <style>
+        /* Centrar todo el contenido de la página */
+        body, html {
+            height: 100%;
+            background: linear-gradient(135deg, #00aaff, #0050a0); /* Gradiente de fondo para el body */
+            font-family: Arial, sans-serif; /* Asegurando que la fuente sea más moderna */
+        }
+
+        .content-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Usar toda la altura de la ventana */
+        }
+
+        .card {
+            width: 100%;
+            max-width: 600px; /* Limitar el ancho de la tarjeta */
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(0, 0, 0, 0.1)); /* Fondo degradado con opacidad */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil para darle profundidad */
+            border-radius: 8px; /* Bordes redondeados */
+        }
+
+        .card-header {
+            background: rgba(0, 123, 255, 0.7); /* Fondo azul translúcido */
+            color: white;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        /* Asegurar que los enlaces y botones estén centrados */
+        .text-center {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body class="cuerpo">
+    <div class="content-wrapper">
+        <!-- Card contenedor para el formulario -->
+        <div class="card">
+            <div class="card-header">
+                <h4>Cargar Documento</h4>
+            </div>
+            <div class="card-body">
+                @if (ViewBag.Mensaje != null)
+                {
+                    <div class="alert alert-warning">
+                        @ViewBag.Mensaje
+                    </div>
+                }
+
+                <!-- Formulario de subida de archivo -->
+                <form method="post" enctype="multipart/form-data" asp-action="SubirDocumento">
+                   
+                    <div class="form-group">
+                        <label for="Archivo">Seleccionar archivo para subir</label>
+                        <br />
+                        <input type="file" name="archivo" class="form-control" required />
+                    </div>
+
+                    <button type="submit" class="btn btn-success">Subir Documento</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Enlace para ver los documentos -->
+    <div class="text-center mt-3">
+        <a href="@Url.Action("VerDocumentoClientes", "Admin")" class="btn btn-info">
+            Ver documentos del cliente
+        </a>
+    </div>
+
+    <!-- jQuery and Bootstrap JS -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

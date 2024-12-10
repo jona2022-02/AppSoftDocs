@@ -1,0 +1,71 @@
+﻿@model IEnumerable<AppSoftDoc.Models.Usuario>
+
+@{
+    ViewData["Title"] = "Lista de Clientes";
+    Layout = "~/Views/Shared/_LayoutAdministrador.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="~/css/menuadministrador.css" rel="stylesheet" />
+</head>
+
+<body class="cuerpo">
+    <form>
+        <h2 style="color:white">@ViewData["Title"]</h2>
+
+        <!-- Tabla con la lista de clientes -->
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Id Usuario</th>
+                    <th>Nombre Completo</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (!Model.Any())
+                {
+                    <!-- Si no hay clientes, mostrar mensaje dentro de la tabla -->
+                    <tr>
+                        <td colspan="3" class="text-center">
+                            <strong>No existen clientes</strong>
+                        </td>
+                    </tr>
+                }
+                else
+                {
+                    <!-- Mostrar los clientes -->
+                    @foreach (var usuario in Model)
+                    {
+                        <tr>
+                            <td>@usuario.IdUsuarios</td>
+                            <td>@usuario.NombreCompleto</td>
+                            <td>
+                                <!-- Enlace para ver documentos del usuario -->
+                                <a href="@Url.Action("VerDocumentosClientes", "Admin", new { id = usuario.IdUsuarios })" class="btn btn-info btn-sm">
+                                    Ver Documentos
+                                </a>
+
+                                <!-- Enlace para cargar archivo -->
+                                <a href="@Url.Action("CargarArchivoClientes", "Admin", new { id = usuario.IdUsuarios })" class="btn btn-primary btn-sm">
+                                    Subir Nuevo Archivo
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </form>
+
+    <!-- jQuery and Bootstrap JS -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

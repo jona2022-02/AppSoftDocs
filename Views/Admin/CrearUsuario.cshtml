@@ -1,0 +1,121 @@
+﻿@model AppSoftDoc.ViewModels.NuevoUsuarioVM
+
+@{
+    ViewData["Title"] = "Crear Usuario";
+    Layout = "~/Views/Shared/_LayoutAdministrador.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Crear Usuario</title>
+    <link href="~/css/menuadministrador.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet" />
+    <style>
+        /* Estilo para los campos de formulario */
+        .form-control {
+            background-color: transparent;
+            border: 2px solid aqua;
+            color: white;
+            border-radius: 5px;
+            padding: 10px;
+        }
+
+            .form-control:focus {
+                border-color: #00FFFF;
+                box-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+                outline: none;
+            }
+
+        .btn-success {
+            background-color: #28a745;
+            border: none;
+            padding: 10px 20px;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            border: none;
+            padding: 10px 20px;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+            .btn-success:hover, .btn-secondary:hover {
+                opacity: 0.9;
+            }
+
+        h2 {
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        label {
+            color: white;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        body {
+            background-color: #20232a; /* Fondo oscuro */
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body class="cuerpo">
+    <form asp-action="CrearUsuario" asp-controller="Admin" method="post">
+>
+        <h2>Crear Nuevo Usuario</h2>
+
+        <div class="form-group">
+            <label for="NombreCompleto">Nombre Completo</label>
+            <input asp-for="NombreCompleto" class="form-control" />
+            @Html.ValidationMessageFor(m => m.NombreCompleto, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            <label for="Correo">Correo</label>
+            <input asp-for="Correo" class="form-control" />
+            @Html.ValidationMessageFor(m => m.Correo, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            <label for="Clave">Contraseña</label>
+            <input asp-for="Clave" type="password" class="form-control" />
+            @Html.ValidationMessageFor(m => m.Clave, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            <label for="ConfirmarClave">Confirmar Contraseña</label>
+            <input asp-for="ConfirmarClave" type="password" class="form-control" />
+            @Html.ValidationMessageFor(m => m.ConfirmarClave, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            <label for="Idrol">Rol</label>
+            <select asp-for="Idrol" asp-items="ViewBag.Roles" class="form-control">
+                <option value="">Seleccione un rol</option>
+            </select>
+            @Html.ValidationMessageFor(m => m.Idrol, "", new { @class = "text-danger" })
+        </div>
+
+        <form asp-action="CrearUsuario" asp-controller="Admin" method="post">
+            <!-- Campos del formulario -->
+            <button type="submit">Crear Usuario</button>
+        </form>
+
+    </form>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+</body>
+</html>

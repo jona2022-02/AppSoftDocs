@@ -1,0 +1,52 @@
+﻿@model AppSoftDoc.Models.Usuario
+
+@{
+    ViewData["Title"] = "Editar Usuario";
+    Layout = "~/Views/Shared/_LayoutAdministrador.cshtml"; // Asegúrate de usar el layout adecuado
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link href="~/css/menuadministrador.css" rel="stylesheet" />
+</head>
+<body class="cuerpo">
+    <h2>Editar Usuario</h2>
+
+    <form asp-action="EditarUsuario" method="post">
+        @Html.AntiForgeryToken()
+
+        <div class="form-group">
+            <label asp-for="NombreCompleto">Nombre Completo</label>
+            <input asp-for="NombreCompleto" class="form-control" />
+            <span asp-validation-for="NombreCompleto" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Correo">Correo</label>
+            <input asp-for="Correo" class="form-control" />
+            <span asp-validation-for="Correo" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Idrol">Rol</label>
+            <select asp-for="Idrol" class="form-control">
+                @* Usamos el atributo asp-items para generar las opciones dinámicamente *@
+                <option value="1" selected="@(Model.Idrol == 1 ? "selected" : "")">Administrador</option>
+                <option value="2" selected="@(Model.Idrol == 2 ? "selected" : "")">Programador</option>
+                <option value="3" selected="@(Model.Idrol == 3 ? "selected" : "")">Usuario</option>
+            </select>
+            <span asp-validation-for="Idrol" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+        <a asp-action="ListadodeUsuarios" class="btn btn-secondary">Cancelar</a>
+    </form>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+    <script src="~/js/confirmarEliminacion.js"></script>
+</body>
+</html>

@@ -1,0 +1,154 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>Sobre Nosotros</title>
+	<link rel="stylesheet" href="css/StyleSheet.css">
+</head>
+<body>
+	<!--   Tarjetas-->
+	<div class="title-cards">
+		<h1>Sobre Nosotros</h1>
+	</div>
+	<div class="container-card">
+
+		<div class="card">
+			<figure>
+				<img src="~/img/imagen3.jpg">
+			</figure>
+			<div class="contenido-card">
+				<h3>Descripción de la empresa</h3>
+				<p>
+					SoftDocs es un sistema integral de gestión de documentación de proyectos,
+					diseñado específicamente para empresas que venden software para todo tipo de
+					negocios. Su propósito principal es centralizar, organizar y controlar toda la
+					documentación relacionada con los sistemas vendidos a los clientes, garantizando
+					un acceso seguro y eficiente a la información..
+				</p>
+
+			</div>
+		</div>
+		<div class="card">
+			<figure>
+				<img src="~/img/imagen2.png">
+			</figure>
+			<div class="contenido-card">
+				<h3>Misión</h3>
+				<p>
+					Proveer una solución segura y eficiente para la gestión y almacenamiento de documentos digitales, facilitando el acceso y la organización de información crítica para nuestros usuarios. Nos comprometemos a ofrecer una plataforma intuitiva, confiable y adaptable a las necesidades cambiantes del mundo digital,
+					garantizando la protección de datos y promoviendo la productividad en todos los ámbitos.
+				</p>
+
+			</div>
+		</div>
+		<div class="card">
+			<figure>
+				<img src="~/img/imagen1.jpg">
+			</figure>
+			<div class="contenido-card">
+				<h3>Visión </h3>
+				<p>
+					Convertirnos en la plataforma líder global en almacenamiento y gestión de documentos digitales, reconocida por nuestra innovación, seguridad y facilidad de uso. Aspiramos a transformar la manera en que las personas y las empresas organizan su información,
+					impulsando una era de gestión documental sin complicaciones y sin límites.
+				</p>
+
+			</div>
+		</div>
+	</div>
+
+
+
+	<style>
+
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+			font-family: 'Montserrat', sans-serif;
+		}
+		/*Cards*/
+		.container-card {
+			width: 100%;
+			display: flex;
+			max-width: 1100px;
+			margin: auto;
+		}
+
+		.title-cards {
+			width: 100%;
+			max-width: 1080px;
+			margin: auto;
+			padding: 20px;
+			margin-top: 20px;
+			text-align: center;
+			color: #7a7a7a;
+		}
+
+		.card {
+			width: 100%;
+			margin: 20px;
+			border-radius: 6px;
+			overflow: hidden;
+			background: #fff;
+			box-shadow: 0px 1px 10px rgba(0,0,0,0.2);
+			transition: all 400ms ease-out;
+			cursor: default;
+		}
+
+			.card:hover {
+				box-shadow: 5px 5px 20px rgba(0,0,0,0.4);
+				transform: translateY(-3%);
+			}
+
+			.card img {
+				width: 100%;
+				height: 210px;
+			}
+
+			.card .contenido-card {
+				padding: 15px;
+				text-align: center;
+			}
+
+				.card .contenido-card h3 {
+					margin-bottom: 15px;
+					color: #7a7a7a;
+				}
+
+				.card .contenido-card p {
+					line-height: 1.8;
+					color: #6a6a6a;
+					font-size: 14px;
+					margin-bottom: 5px;
+				}
+
+				.card .contenido-card a {
+					display: inline-block;
+					padding: 10px;
+					margin-top: 10px;
+					text-decoration: none;
+					color: #2fb4cc;
+					border: 1px solid #2fb4cc;
+					border-radius: 4px;
+					transition: all 400ms ease;
+					margin-bottom: 5px;
+				}
+
+					.card .contenido-card a:hover {
+						background: #2fb4cc;
+						color: #fff;
+					}
+
+		/*Fin-Cards*/
+
+	</style>
+	<!--Fin   Tarjetas-->
+</body>
+
+<link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap'>
+
+

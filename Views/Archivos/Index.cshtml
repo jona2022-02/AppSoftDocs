@@ -1,0 +1,51 @@
+﻿@model IEnumerable<AppSoftDoc.Models.Usuario>
+
+<h2>Usuarios</h2>
+
+<!-- Tabla que lista todos los usuarios -->
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre Completo</th>
+            <th>Correo</th>
+            <th>Rol</th>
+            <th>Acción</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var usuario in Model)
+            {
+                <tr>
+                    <td>@usuario.NombreCompleto</td>
+                    <td>@usuario.Correo</td>
+                    <td>@usuario.Role.Descripcion</td>
+                    <td>
+                        <!-- Botón para ver documentos -->
+                        <button class="btn btn-info" onclick="verDocumentos(@usuario.IdUsuarios)">Ver Documentos</button>
+                    </td>
+                </tr>
+            }
+    </tbody>
+</table>
+
+<!-- Contenedor para cargar los documentos del usuario (esta parte será actualizada por AJAX) -->
+<div id="documentos-container"></div>
+
+@section Scripts {
+        <script>
+            function verDocumentos(usuarioId) {
+                // Hacer una solicitud AJAX para cargar los documentos del usuario
+                $.ajax({
+                    url: '@Url.Action("VerDocumentos", "Archivos")/' + usuarioId,
+                    type: 'GET',
+                    success: function (data) {
+                        // Actualizar el contenedor con la vista parcial de los documentos
+                        $('#documentos-container').html(data);
+                    },
+                    error: function () {
+                        alert("Ocurrió un error al cargar los documentos.");
+                    }
+                });
+            }
+        </script>
+}

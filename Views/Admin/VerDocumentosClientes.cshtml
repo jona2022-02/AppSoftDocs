@@ -1,0 +1,76 @@
+﻿@model AppSoftDoc.Models.Usuario
+
+@{
+ 
+    Layout = "~/Views/Shared/_LayoutAdministrador.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Documentos del Cliente</title>
+    <link href="~/css/menuadministrador.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet" />
+</head>
+<body class="cuerpo">
+    <h2>@ViewData["Title"]</h2>
+
+    @if (ViewBag.Mensaje != null)
+    {
+        <div class="alert alert-warning">
+            @ViewBag.Mensaje
+        </div>
+    }
+
+    <form>
+        <h4 style="color:white">Documentos del cliente: @Model.NombreCompleto</h4>
+        <br />
+
+        <!-- Enlace para ir a la vista de carga de archivo para este usuario -->
+        <a href="@Url.Action("CargarArchivoClientes", "Admin", new { id = Model.IdUsuarios })" class="btn btn-primary mb-3">
+            Subir Nuevo Archivo
+        </a>
+        <a href="@Url.Action("ListarClientes", "Admin", new { id = Model.IdUsuarios })" class="btn btn-success mb-3">
+           Ver Listado de Clientes
+        </a>
+
+        <!-- Mostrar mensaje si no hay archivos -->
+        @if (Model.Archivos == null || !Model.Archivos.Any())
+        {
+            <h2><p style="color:red">No hay documentos disponibles para este cliente.</p></h2>
+        }
+        else
+        {
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Id Documento</th>
+                        <th>Nombre del Archivo</th>
+                        <th>Extensión</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var archivo in Model.Archivos)
+                    {
+                        <tr>
+                            <td>@archivo.IdArchivo</td>
+                            <td>@archivo.Nombre</td>
+                            <td>@archivo.Extension</td>
+                            <td>
+                                <!-- Botón para descargar el archivo -->
+                                <a href="@Url.Action("DescargarArchivo", "Admin", new { id = archivo.IdArchivo })" class="btn btn-success btn-sm">
+                                    Descargar
+                                </a>
+
+                                <!-- Aquí podrías añadir más botones de acción si es necesario -->
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </form>
+</body>
+</html>

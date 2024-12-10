@@ -1,0 +1,65 @@
+﻿@model IEnumerable<AppSoftDoc.Models.Archivo>
+@{
+    ViewData["Title"] = "Mis Documentos";
+    Layout = "~/Views/Shared/_Layout1Cliente.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+   
+    <link href="~/css/menuadministrador.css" rel="stylesheet" />
+</head>
+<body class="cuerpo">
+    
+
+    <main class="container mt-4">
+        <h2>@ViewBag.Title</h2>
+
+        @if (ViewBag.Mensaje != null)
+        {
+            <div class="alert alert-warning">
+                @ViewBag.Mensaje
+            </div>
+        }
+
+        @if (Model != null && Model.Any())
+        {
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Nombre del Documento</th>
+                        <th>Extensión</th>
+                        <th>Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var archivo in Model)
+                    {
+                        <tr>
+                            <td>@archivo.Nombre</td>
+                            <td>@archivo.Extension</td>
+                            <td>
+                                <a asp-action="DescargarArchivo" asp-route-id="@archivo.IdArchivo" class="btn btn-primary">
+                                    Descargar
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <div class="alert alert-info">
+                No hay documentos disponibles.
+            </div>
+        }
+    </main>
+
+   
+
+    <script src="/js/jquery.min.js"></script> <!-- Ruta a jQuery -->
+    <script src="/js/bootstrap.bundle.min.js"></script> <!-- Ruta a Bootstrap JS -->
+</body>
+</html>

@@ -1,0 +1,78 @@
+﻿
+
+.login-container {
+	border: 1px solid #ccc; /* Opcional: para visualizar el contenedor */
+	padding: 20px;
+	border-radius: 5px;
+	font-family: "Noto Serif", serif;
+	background-color: #f9f9f9;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Opcional: para darle un efecto de sombra */
+}
+
+.input-group, .action-group, .links-group {
+	margin-bottom: 15px;
+}
+
+button {
+	padding: 10px 20px;
+}
+
+h2 {
+	margin-bottom: 1.5rem;
+	color: #333;
+}
+
+.input-group {
+	margin-bottom: 1.5rem;
+	text-align: left;
+}
+
+	.input-group label {
+		display: block;
+		margin-bottom: 0.5rem;
+		font-weight: bold;
+		color: #555;
+	}
+
+	.input-group input {
+		width: 100%;
+		padding: 0.75rem;
+		border-radius: 5px;
+		border: 1px solid #ccc;
+		font-size: 1rem;
+	}
+
+.action-group {
+	margin-top: 1rem;
+}
+
+	.action-group button {
+		padding: 0.75rem 2rem;
+		background-color: #4CAF50;
+		border: none;
+		color: white;
+		font-size: 1rem;
+		cursor: pointer;
+		border-radius: 5px;
+		width: 100%;
+	}
+
+		.action-group button:hover {
+			background-color: #45a049;
+		}
+
+.links-group {
+	margin-top: 1rem;
+}
+
+	.links-group a {
+		display: block;
+		margin-top: 0.5rem;
+		color: #007BFF;
+		text-decoration: none;
+		font-size: 0.9rem;
+	}
+
+		.links-group a:hover {
+			text-decoration: underline;
+		}

@@ -1,0 +1,58 @@
+﻿@model AppSoftDoc.ViewModels.VerDocumentosVM
+@{
+    ViewData["Title"] = "VerDocumentos";
+    Layout = "~/Views/Shared/_LayoutAdministrador.cshtml";
+}
+<h3>Documentos de Usuario @Model.UsuarioId</h3>
+
+@if (Model.Archivos != null && Model.Archivos.Any())
+    {
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Extensión</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var archivo in Model.Archivos)
+                {
+                <tr>
+                    <td>@archivo.Nombre</td>
+                    <td>@archivo.Extension</td>
+                    <td>
+                        <a href="@Url.Action("DescargarArchivo", "Archivos", new { id = archivo.IdArchivo })" class="btn btn-primary">Descargar</a>
+                    </td>
+                </tr>
+                }
+        </tbody>
+    </table>
+    }
+else
+    {
+    <p>No hay documentos disponibles para este usuario.</p>
+    }
+
+<h3>Subir nuevo archivo</h3>
+
+<form asp-action="SubirArchivo" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="usuarioId" value="@Model.UsuarioId" />
+
+    <div class="form-group">
+        <label for="NombreArchivo">Nombre del archivo</label>
+        <input type="text" class="form-control" id="NombreArchivo" name="NombreArchivo" required />
+    </div>
+
+    <div class="form-group">    
+        <label for="Extension">Extensión del archivo</label>
+        <input type="text" class="form-control" id="Extension" name="Extension" required />
+    </div>
+
+    <div class="form-group">
+        <label for="ArchivoData">Seleccionar archivo</label>
+        <input type="file" class="form-control" id="ArchivoData" name="ArchivoData" required />
+    </div>
+
+    <button type="submit" class="btn btn-success">Subir archivo</button>
+</form>
