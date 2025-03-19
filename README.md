@@ -31,7 +31,6 @@ Este proyecto fue desarrollado como parte de un trabajo universitario y demuestr
 - *Frontend:
   - HTML
   - CSS
-  - Bootstrap.
   - SweetAlert (para notificaciones)
 
 
