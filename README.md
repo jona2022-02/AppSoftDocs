@@ -14,8 +14,7 @@ Este proyecto fue desarrollado como parte de un trabajo universitario y demuestr
   - Agregar, editar y eliminar clientes.
   - Asignar archivos específicos a cada cliente.
 - **Subida de documentos**:
-  - Los programadores pueden subir documentos para los clientes.
-  - Los administradores gestionan y organizan los archivos.
+  - Los Administradores pueden subir documentos para los clientes, gestionan y organizan los archivos.
 - **Interfaz amigable**:
   - Diseño responsive con **Bootstrap**.
   - Notificaciones interactivas con **SweetAlert**.
