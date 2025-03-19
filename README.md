@@ -24,12 +24,11 @@ Este proyecto fue desarrollado como parte de un trabajo universitario y demuestr
 *Tecnologías utilizadas
 - *Backend:
   - ASP.NET Core MVC
-  - C#
-  - .NET Framework
+  - Entity Framework
   - SQL Server
 - *Frontend:
   - HTML
   - CSS
-  - SweetAlert (para notificaciones)
+  - SweetAlert.
 
 
